@@ -1,0 +1,57 @@
+                                      Analyse de comptes Tweeters
+
+Ezriel Steinberg 
+Nathaniel Hayoun
+
+Dépendances :
+  Modules à installer : pyquery p_tqdm git+https://github.com/ClaudeCoulombe/FrenchLefffLemmatizer.git
+  Utiliser pip3 : 
+  ~$ pip3 install pyquery p_tqdm git+https://github.com/ClaudeCoulombe/FrenchLefffLemmatizer.git
+
+
+********* dlTweets.py *********
+Télecharge un nombre n de Tweets des comptes passés en arguments, ou écrits dans le fichier
+passé en argument (séparés par des sauts de ligne). 
+Génére en sortie un fichier pickle contenant un dictionnaire avec le nomber d'occurrences de chaque mot,
+pour chacun des comptes.
+
+usage: dlTweets.py [-h] [-f | -a] [-o OUT] [-n NUMBER] L [L ...]
+
+positional arguments:
+  L                     list of twitter accounts or file with them into.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -f, --file            arguments are file(s) in wich we look at twitter accounts
+  -a, --account         arguments are twitter accounts
+  -o OUT, --out OUT     name of file for output
+  -n NUMBER, --number NUMBER
+                        number of tweets to analyse per account
+
+
+
+********* analyseTweets.py *********
+Affiche un graphe décrivant la proximité linguistiqe des différents comptes Tweeters lus depuis le fichier
+dict écrit par le programme dlTweets.py. Les paramètres permettent de modifier les variables de 
+l'analyse linguistique, tel que le nombre de mots les plus courants que l'on placera dans la stopList 
+(StopListSize), le seuil à partir duquel une arête sera afficher, et le nombre minimum d'occurrences 
+d'un mot pour que celui-ci soit pris en compte. 
+Le mode verbeux permet utilement d'afficher les mots les plus communs pour chacune des arêtes du graphe,
+ce quiu permet de l'analyser de manière pertinente.
+
+usage: analyseTweets.py [-h] [-d] [-o SAVE_GRAPH] [-s STOPLISTSIZE]
+                  [-m MINOCCURENCES] [-p SEUIL] [-v verbose-mode]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -d, --dict            Dict file with words list and occurences number
+  -o SAVE_GRAPH, --output-graph SAVE_GRAPH
+                        name of file for output (format gml)
+  -s STOPLISTSIZE, --stopListSize STOPLISTSIZE
+                        size of stoplist (most frequent words)
+  -m MINOCCURENCES, --minOccurences MINOCCURENCES
+                        minimum number of occurence for a word to be noted
+  -p SEUIL, --percentage-threshold SEUIL
+                        Percentage of closeness necessary to keep the edge
+  -v, --verbose         Put on the verbose mode
+
